@@ -2,42 +2,52 @@
 
 
 {% block content %}
-<div class="row">
-	<div class="col"></div>
-	<div class="col">
-		<div>
-			<div class="row mt-5">
-				<div class="col"></div>
-				<div class="col">
-					<img src="../static/img/logo1png.png" class="img-fluid">
-				</div>
-				<div class="col"></div>
+{% from 'login/_login_helper.html' import render_field %}
+<div class="container-lg mt-5 p-0">
+	<div class="row">
+		<div class="col"></div>
+		<div class="col">
+			{% if message != '' %}
+			<div class="alert alert-danger" role="alert">
+			  {{ message }}
 			</div>
-			<div class="row">
-				<div class="card border-0 w-100" style="background-color: #FCF6F5FF">
-					<div class="card-body text-dark px-5">
-						<h4 class="card-title text-center">Log in as Owner</h4>
-						<form>
-							<div class="form-group">
-								<label for="exampleInputEmail1">Email address</label>
-								<input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-							</div>
-							<div class="form-group">
-								<label for="exampleInputPassword1">Password</label>
-								<input type="password" class="form-control" id="exampleInputPassword1">
-							</div>
-							<div>
-								<button type="submit" class="btn btn-block mb-2 text-white" style="background-color: #ED2939">Log in</button>
-								<div class="text-center">
-								<a href="#" class="text-dark">Forget Password?</a> · <a href="#" class="text-dark">Sign up for FoodHub</a>
-								</div>
-							</div>
-						</form>
+			{% endif %}
+			<div class="card shadow">
+				<div class="card-header bg-white">
+					<div class="card-title">
+						Log in as Owner
 					</div>
+				</div>
+				<div class="card-body">
+					<form method="post" action="{{ url_for('login_owner') }}">
+						{{ form.csrf_token }}
+						<div class="form-group">
+							<label for="email">Email</label>
+							{{ render_field(form.email, class="form-control", required="true", id="email") }}
+						</div>
+						<div class="form-group">
+							<label for="password">Password</label>
+							{{ render_field(form.password, class="form-control", required="true", id="password") }}
+							<input type="checkbox" id="showpass" onclick="showPass()"><small> Show Password</small>
+						</div>
+						<input type="submit" class="btn btn-block btn-secondary" value="Submit">
+						
+					</form>
 				</div>
 			</div>
 		</div>
+		<div class="col"></div>
 	</div>
-	<div class="col"></div>
 </div>
+
+<script type="text/javascript">
+	function showPass() {
+	  var x = document.getElementById("password");
+	  if (x.type === "password") {
+	    x.type = "text";
+	  } else {
+	    x.type = "password";
+	  }
+	}
+</script>
 {% endblock %}

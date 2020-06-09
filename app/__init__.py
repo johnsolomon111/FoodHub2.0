@@ -1,5 +1,6 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, redirect, jsonify, request, make_response
 
 server = Flask(__name__)
+server.config['SECRET_KEY'] = 'secretsecretsecret'
 
 from app.views import *

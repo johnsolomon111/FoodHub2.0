@@ -1,0 +1,13 @@
+{% macro sidebar(idname) %}
+<div class="container mt-5">
+	<!-- <img class="border rounded mb-3" src={{ url_for('static', filename='img/resto_logo.webp') }} width="275" height="275"> -->
+	<a href="#" id="myrest" class="btn btn-outline-secondary border border-0 btn-block">My Restaurants</a>
+	<a href="#" id="reser" class="btn btn-outline-secondary border border-0 btn-block">Reservations</a>
+	<a href="#" id="menu" class="btn btn-outline-secondary border border-0 btn-block">Menu</a>
+</div>
+
+
+<script type="text/javascript">
+  var y = document.getElementById("{{ idname }}").className = 'btn btn-block btn-secondary font-weight-bolder'
+</script>
+{% endmacro %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% from 'dashboard/_navbar.html' import navbar %}
+{% from 'dashboard/_sidebar.html' import sidebar %}
+
+{{ navbar("home") }}
+<div class="row mt-5 inline-block"></div>
+<div class="row">
+	<div class="mx-4 col-lg-3"></div>
+	<div class="mx-4 col-lg-3 position-fixed">
+	{{ sidebar("myrest") }}
+	</div>
+	<div class="col-lg-8 p-0 mt-5 mr-0">
+		{% if restos['data'] == [] %}
+		<div class="jumbotron p-4">
+		  <h3 class="display-5">Hi, {{ data['name'] }}!</h3>
+		  <p class="lead">Since you haven't created you restaurant yet</p>
+		  <p class="lead">
+		    <a class="btn btn-secondary btn-lg" href="{{ url_for('add_restaurant') }}" role="button">Create Restaurant</a>
+		  </p>
+		</div>
+		{% else %}
+		<img src={{ url_for('static', filename='img/resto1.jpg') }} class="rounded" alt="Card image cap" width="920" height="200">
+		<div class="row mt-3">
+			<div class="col">
+				<div class="card h-100">
+					<div class="card-body">
+						<div class="card-title"><h3 class="font-weight-bolder">{{ resto['resto_name'] }}</h3></div>
+							<p class="mx-2"><strong>Description: </strong>{{ resto['resto_description'] }}</p>
+							<p class="mx-2"><strong>Location: </strong>{{ resto['location'] }}</p>
+							<p class="mx-2"><strong>Services: </strong>{{ resto['services'] }}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col">
+				<div class="card h-100">
+					<div class="card-body">
+						<div class="text-center">
+								<h4>Operating Hours</h4>
+								<div class="row">
+									<div class="col">
+										<p class="mx-2">Sunday: {{ resto['sun'] }}</p>
+										<p class="mx-2">Monday: {{ resto['mon'] }}</p>
+										<p class="mx-2">Tuesday: {{ resto['tue'] }}</p>
+									</div>
+									<div class="col">
+										<p>Wednesday: {{ resto['wed'] }}</p>
+										<p>Thursday: {{ resto['thu'] }}</p>
+										<p>Friday: {{ resto['fri'] }}</p>
+										<p>Saturday: {{ resto['sat'] }}</p>
+									</div>
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		{% endif %}
+	</div>
+</div>
+{% endblock %}
