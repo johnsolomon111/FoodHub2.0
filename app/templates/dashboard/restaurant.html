@@ -1,17 +1,15 @@
 {% extends 'base.html' %}
-
 {% block content %}
-{% from 'dashboard/_navbar.html' import navbar %}
 {% from 'dashboard/_sidebar.html' import sidebar %}
+<link rel="stylesheet" type="text/css" href="../static/css/navbar.css">
 
-{{ navbar("home") }}
-<div class="row mt-5 inline-block"></div>
-<div class="row">
+<div class="row mt-3 inline-block"></div>
+<div class="row w-100">
 	<div class="mx-4 col-lg-3"></div>
 	<div class="mx-4 col-lg-3 position-fixed">
-	{{ sidebar("myrest") }}
+	{{ sidebar("myrest",user['name']) }}
 	</div>
-	<div class="col-lg-8 p-0 mt-5 mr-0">
+	<div class="col-lg-6 p-0 mt-5 mr-0">
 		{% if restos['data'] == [] %}
 		<div class="jumbotron p-4">
 		  <h3 class="display-5">Hi, {{ data['name'] }}!</h3>
@@ -21,9 +19,37 @@
 		  </p>
 		</div>
 		{% else %}
-		<img src={{ url_for('static', filename='img/resto1.jpg') }} class="rounded" alt="Card image cap" width="920" height="200">
+		
 		<div class="row mt-3">
-			<div class="col">
+			<div class="card w-100">
+				<div class="card-header">
+					<div class="row">
+						<div class="card-title col">
+							Restaurants
+						</div>
+						<div class="col text-right">
+							<button class="btn btn-success font-weight-bolder"> + </button>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<p>
+					  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+					    Link with href
+					  </a>
+					  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+					    Button with data-target
+					  </button>
+					</p>
+					<div class="collapse" id="collapseExample">
+					  <div class="card card-body">
+					    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+					  </div>
+					</div>
+				</div>
+			</div>
+		</div>
+			<!-- <div class="col">
 				<div class="card h-100">
 					<div class="card-body">
 						<div class="card-title"><h3 class="font-weight-bolder">{{ resto['resto_name'] }}</h3></div>
@@ -55,9 +81,11 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		
+		 -->
 		{% endif %}
+	</div>
+	<div class="col-lg-3">
+		
 	</div>
 </div>
 {% endblock %}

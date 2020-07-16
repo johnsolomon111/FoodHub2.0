@@ -1,7 +1,7 @@
 {% macro navbar(idname) %}
 <link rel="stylesheet" type="text/css" href="../static/css/navbar.css">
-<div class="container">
   <nav class="navbar navbar-expand-xl fixed-top navbar-light bg-light shadow-sm">
+<div class="container">
     <img src={{ url_for('static', filename='img/restaurant.svg' )}} id='logo'>
     <a class="navbar-brand" href="#"> FoodHub</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample06" aria-controls="navbarsExample06" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,8 +15,8 @@
         </li>
       </ul>
     </div>
-  </nav>
 </div>
+  </nav>
 <script type="text/javascript">
   var y = document.getElementById("{{ idname }}").className = 'nav-item active border-bottom'
 </script>

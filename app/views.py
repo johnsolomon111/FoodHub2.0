@@ -80,10 +80,12 @@ def restaurant(get_user):
 		data = get_user['data']
 		print(get_user)
 		restos = get_all_resto(data['user_id'])
-		print(restos[0]['resto_name'])
-		resto_data = restos[0]
+		if restos:
+			resto_data = restos[0]
+		else:
+			resto_data = []
 	
-	return render_template('dashboard/restaurant.html',data=data, resto=resto_data, restos=restos, title='Restaurant Page')
+	return render_template('dashboard/restaurant.html',user=data,data=data, resto=resto_data, restos=restos, title='Restaurant Page')
 
 @server.route('/restaurant/add', methods=['GET','POST'])
 @token_required
@@ -115,3 +117,9 @@ def add_restaurant(get_user):
 			message = 'Restaurant name already Exits'
 			return render_template('dashboard/add_restaurant.html',title='Add Restaurant',form=form, message=message)
 	return render_template('dashboard/add_restaurant.html',title='Add Restaurant',form=form, message=message)
+
+
+# @server.route('/create/restaurant', methods=['GET', 'POST'])
+# @token_required
+# def create_restaurant():
+# 	return render_template()
