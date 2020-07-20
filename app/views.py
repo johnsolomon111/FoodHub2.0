@@ -33,9 +33,8 @@ def login_owner():
 		}
 		user = login_user(data)
 		if user['status'] == 'success':
-			global global_token
-			global_token = user['Authorization']
-			print(global_token)
+			get_user = auth_user(user['Authorization'])
+			session['user'] = get_user['data']
 			return redirect(url_for('restaurant'))
 		else:
 			message = 'Invalid Password/Email, please try again'
@@ -59,8 +58,8 @@ def signup():
 		}
 		new_user = add_new_user(data)
 		if new_user["status"] == "success":
-			global global_token
-			global_token = new_user["Authorization"]
+			get_user = auth_user(new_user['Authorization'])
+			session['user'] = get_user['data']
 			return redirect(url_for('restaurant'))
 		else:
 			message = 'Email already exists'
@@ -70,26 +69,58 @@ def signup():
 
 
 @server.route('/restaurant', methods=["GET", "POST"])
-@token_required
-def restaurant(get_user):
-	if get_user['status'] == 'fail':
+def restaurant():
+	if session['user'] == None:
 		form = LoginForm()
 		message = 'Session Expired, please login again'
 		return render_template('login/login_owner.html', title='Login as Owner', form=form, message=message)
 	else:
-		data = get_user['data']
-		print(get_user)
+		data = session['user']
 		restos = get_all_resto(data['user_id'])
 		if restos:
 			resto_data = restos[0]
 		else:
 			resto_data = []
 	
-	return render_template('dashboard/restaurant.html',user=data,data=data, resto=resto_data, restos=restos, title='Restaurant Page')
+	return render_template('dashboard/restaurant.html',data=data, resto=resto_data, restos=restos, title='Restaurant Page')
+
+@server.route('/create/restaurant', methods=['GET', 'POST'])
+def create_restaurant():
+	if session['user'] == None:
+		form = LoginForm()
+		message = 'Session Expired, please login again'
+		return render_template('login/login_owner.html', title='Login as Owner',form=form, message=message)
+	else:
+		data = session['user']
+		form = RestaurantForm()
+		user_id = data['user_id']
+		if form.validate_on_submit():
+			form_data = {
+				'resto_name' : form.resto_name.data,
+				'location' : form.location.data,
+				'resto_description' : request.form.get('description'),
+				'services' : form.services.data,
+				'sun' : form.start_weekend.data + ' - ' + form.end_weekend.data,
+				'sat' : form.start_weekend.data + ' - ' + form.end_weekend.data,
+				'mon' : form.start_weekday.data + ' - ' + form.end_weekday.data,
+				'tue' : form.start_weekday.data + ' - ' + form.end_weekday.data,
+				'wed' : form.start_weekday.data + ' - ' + form.end_weekday.data,
+				'thu' : form.start_weekday.data + ' - ' + form.end_weekday.data,
+				'fri' : form.start_weekday.data + ' - ' + form.end_weekday.data
+			}
+			new_resto = add_new_resto(form_data, user_id)
+			if new_resto['status'] == 'success':
+				return redirect(url_for('restaurant'))
+			else:
+				message = 'Restaurant Name already Exists'
+				return render_template('dashboard/add_restaurant.html', title='Add Restaurant',form=form, message=message)
+		return render_template('dashboard/create.html',form=form, data=data, title='Create Restaurant', message='')
+
+
+	
 
 @server.route('/restaurant/add', methods=['GET','POST'])
-@token_required
-def add_restaurant(get_user):
+def add_restaurant():
 	global global_token
 	message = ''
 	form = RestaurantForm()
@@ -118,8 +149,3 @@ def add_restaurant(get_user):
 			return render_template('dashboard/add_restaurant.html',title='Add Restaurant',form=form, message=message)
 	return render_template('dashboard/add_restaurant.html',title='Add Restaurant',form=form, message=message)
 
-
-# @server.route('/create/restaurant', methods=['GET', 'POST'])
-# @token_required
-# def create_restaurant():
-# 	return render_template()
