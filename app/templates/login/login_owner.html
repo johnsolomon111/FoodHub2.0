@@ -3,40 +3,22 @@
 
 {% block content %}
 {% from 'login/_login_helper.html' import render_field %}
-<div class="container-lg mt-5 p-0">
-	<div class="row">
-		<div class="col"></div>
-		<div class="col">
-			{% if message != '' %}
-			<div class="alert alert-danger" role="alert">
-			  {{ message }}
+<div class="form-background">
+	<div class="card form-login shadow">
+		<h3 class="d-flex justify-content-center my-4"><strong>Login | FoodHub</strong></h3>
+		<form action="" class="px-5">
+			{{ form.csrf_token }}
+			<div class="form-group">
+				<label for="email">Email</label>
+				{{ render_field(form.email, class="form-control", required="true", id="email") }}
 			</div>
-			{% endif %}
-			<div class="card shadow">
-				<div class="card-header bg-white">
-					<div class="card-title">
-						Log in as Owner
-					</div>
-				</div>
-				<div class="card-body">
-					<form method="post" action="{{ url_for('login_owner') }}">
-						{{ form.csrf_token }}
-						<div class="form-group">
-							<label for="email">Email</label>
-							{{ render_field(form.email, class="form-control", required="true", id="email") }}
-						</div>
-						<div class="form-group">
-							<label for="password">Password</label>
-							{{ render_field(form.password, class="form-control", required="true", id="password") }}
-							<input type="checkbox" id="showpass" onclick="showPass()"><small> Show Password</small>
-						</div>
-						<input type="submit" class="btn btn-block btn-secondary" value="Submit">
-						
-					</form>
-				</div>
+				<div class="form-group">
+				<label for="password">Password</label>
+				{{ render_field(form.password, class="form-control", required="true", id="password") }}
+				<input type="checkbox" id="showpass" onclick="showPass()"><small> Show Password</small>
 			</div>
-		</div>
-		<div class="col"></div>
+			<input type="submit" class="btn btn-block btn-success my-5" value="Submit">
+		</form>
 	</div>
 </div>
 

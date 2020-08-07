@@ -1,0 +1,62 @@
+{% macro navbar() %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
+	<div class="container">
+		<a class="navbar-brand" href="#">
+			<img src="../static/img/restaurant.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+			FoodHub
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link mx-3" href="#">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link mx-3" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+					<a class="nav-link mx-3" href="#">About us</a>
+				</li>
+				<li>
+					<a href="/login/owner" class="btn btn-danger mx-3 rounded-pill">Login</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<!-- Login Modal -->
+
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <h2 class="text-center mb-0"><strong>Create Account</strong></h2>
+          <small class="d-flex justify-content-center">Are you a Restaurant Owner or Customer?</small>
+          <div class="card text-center border-0">
+            <div class="card-body">
+              <div class="d-flex justify-content-center">
+                <a href="/signup" class="btn btn-outline-danger rounded-pill mr-1">Owner</a>
+                <a href="/signup" class="btn btn-danger rounded-pill ml-1">Customer</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endmacro%}
+
+
+

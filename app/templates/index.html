@@ -1,49 +1,26 @@
 {% extends 'base.html' %}
-
+{% from "components.html" import navbar %}
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="../static/css/index.css">
 
-<div class="container">
-	<header class="mt-3">
-		<div class="row inline">
-		<div class="col">
-			<div class="row inline">
-				<img class="mx-1" src="../static/img/restaurant.svg" id="logo">
-				<h4>
-				food<strong>Hub</strong>
-				</h4>
-			</div>
-		</div>
-		<div class="col"></div>
-		<div class="col ml-2">
-			<div class="row inline">
-				<h5 class="mx-3">Features</h5>
-				<h5 class="mx-3">About Us</h5>
-				<h5 class="mx-3"><a href="/login/owner" style="text-decoration: none;" class="text-dark">Log in</a></h5>
-			</div>
-		</div>
-		</div>
-	</header>
+{{ navbar() }}
+
+<section class="hero-area">
 	<div class="container">
-	<div class="row">
-		<div class="col h-100">
-			<img class="ml-5" src="../static/img/forlandingpage.png" id="animg">
-		</div>
-		<div class="col h-100">
-			<div id="contents">
-				<h1><strong>Feeling Hungry?</strong></h1>
-				<h5>Find the best restaurant nearby!</h5>
-				<div class="row inline pt-5">
-					<div class="col">
-						<a href="/signup" class="btn btn-danger btn-lg">Join now</a>
-					</div>
-				</div>
+		<div class="row">
+			<div class="col-md-6 text-center">
+				<img class="" src="../static/img/forlandingpage.png" id="animg" style="width: 100%;">
 			</div>
+			<div class="col-md-6 align-self-center">
+				<h1 class="main-title mb-3">Feeling Hungry?</h1>
+				<p class="main-heading mb-4 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ex, deserunt explicabo quam laudantium veniam consectetur. Consequuntur corporis expedita sint.</p>
+				<div class="d-flex justify-content-center">
+					<a href="" class="btn btn-main align-self-center" data-toggle="modal" data-target="#staticBackdrop"><strong>Join now</strong></a>
+				</div>
+				</div>
 		</div>
-		
 	</div>
-	</div>
-</div>
+</section>
 
 {% endblock %}

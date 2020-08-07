@@ -20,7 +20,7 @@ def token_required(f):
 
 @server.route('/',methods=['GET','POST'])
 def index():
-	return render_template('index.html', title="Welcome to FoodHub :)")
+	return render_template('index.html', title="Welcome")
 
 @server.route('/login/owner', methods=['GET','POST'])
 def login_owner():
@@ -38,12 +38,12 @@ def login_owner():
 			return redirect(url_for('restaurant'))
 		else:
 			message = 'Invalid Password/Email, please try again'
-			return render_template('login/login_owner.html', title='Login as Owner', form=form, message=message)
-	return render_template('login/login_owner.html', title="Login as Owner", form=form, message=message)
+			return render_template('login/login_owner.html', title='Login', form=form, message=message)
+	return render_template('login/login_owner.html', title="Login", form=form, message=message)
 
 @server.route('/login/customer', methods=['GET','POST'])
 def login_customer():
-	return render_template('login/login_customer.html', title="Login as Customer")
+	return render_template('login/login_customer.html', title="Login")
 
 @server.route('/signup', methods=['GET','POST'])
 def signup():
@@ -63,8 +63,8 @@ def signup():
 			return redirect(url_for('restaurant'))
 		else:
 			message = 'Email already exists'
-			return render_template('signup/signup.html', title="Sign up for FoodHub", form=form, message=message)
-	return render_template('signup/signup.html', title="Sign up for FoodHub", form=form, message=message)
+			return render_template('signup/signup.html', title="Sign Up", form=form, message=message)
+	return render_template('signup/signup.html', title="Sign Up", form=form, message=message)
 
 
 
