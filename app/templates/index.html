@@ -1,26 +1,22 @@
-{% extends 'base.html' %}
-{% from "components.html" import navbar %}
+{% extends 'base/base.html' %}
+{% from 'components/components.html' import navbar_index %}
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="../static/css/index.css">
 
-{{ navbar() }}
+{{ navbar_index() }}
 
-<section class="hero-area">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6 text-center">
-				<img class="" src="../static/img/forlandingpage.png" id="animg" style="width: 100%;">
-			</div>
-			<div class="col-md-6 align-self-center">
-				<h1 class="main-title mb-3">Feeling Hungry?</h1>
-				<p class="main-heading mb-4 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum ex, deserunt explicabo quam laudantium veniam consectetur. Consequuntur corporis expedita sint.</p>
-				<div class="d-flex justify-content-center">
-					<a href="" class="btn btn-main align-self-center" data-toggle="modal" data-target="#staticBackdrop"><strong>Join now</strong></a>
-				</div>
-				</div>
-		</div>
-	</div>
-</section>
+<main class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6 text-md-left text-center">
+      <h1 class="main-title mt-5">Feeling Hungry?</h1>
+      <p class="main-paragraph mt-3">Find the best restaurants in Iligan City and get to know these awesome restaurant owners.</p>
+      <a href="#" class="btn btn-success btn-lg rounded-pill" data-toggle="modal" data-target="#staticBackdrop" style="font-weight: 500;">Create Account</a>
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+      <img src="../static/img/forlandingpage.png" id="animg">
+    </div>
+  </div>
+</main>
 
 {% endblock %}

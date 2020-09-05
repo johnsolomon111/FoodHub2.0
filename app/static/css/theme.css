@@ -1,6 +1,5 @@
 * {
 	font-family: 'Montserrat', sans-serif;
-	/* font-family: 'Josefin Sans', sans-serif; */
 }
 
 body {
@@ -11,31 +10,21 @@ body {
 .navbar {
 	font-size: 18px;
 	background-color: transparent !important;
-	margin-top: 20px;
 }
 
 .navbar-light .navbar-nav .nav-link {
+	font-weight: 500;
 	color: #dc3545 !important;
-}
-
-.btn-main {
-	color: #fff;
-	border-radius: 30px;
-	font-size: 20px;
-	padding: 10px 30px;
-	display: inline-block;
-	background-color: #28a745;
 }
 
 .main-title {
 	font-family: 'Montserrat', sans-serif;
-	font-size: 60px;
+	font-size: 55px;
 	font-weight: 700;
 }
 
-.main-heading {
-	font-family: 'Lato', sans-serif;
-	font-size: 20px;
+.main-paragraph {
+	font-size: 24px;
 	line-height: 25px;
 }
 

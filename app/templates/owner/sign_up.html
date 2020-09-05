@@ -1,0 +1,89 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+{% from 'form_helpers/_signup_helper.html' import render_field %}
+<div class="container-lg mt-3">
+	<div class="row">
+		<div class="col-lg-6 col-sm-12 col-md-6">
+			<div class="card border border-0 mt-5">
+				<div class="card-header p-0 bg-white border border-0">
+					<div class="card-title">
+						<h2 class="mb-0">Join Now</h2>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<h4>Be Restaurant Owner</h4>
+						<ul>
+							<li>
+								Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+							</li>
+							<li>
+								sed do eiusmodtempor incididunt ut labore et dolore magna aliqua.
+							</li>
+							<li>
+								 Ut enim ad minim ve
+							</li>
+						</ul>
+					</div>
+					<div class="row mt-4 text-right">
+						<div class="col"></div><div class="col"><h4>Be a Foodie</h4></div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-6 col-sm-12 col-md-6">
+			<div class="card form-login shadow">
+				<h3 class="d-flex justify-content-center my-4" style="font-weight:600;">Sign Up | FoodHub</h3>
+				<form method="POST" action="" class="px-5">
+				{{ form.csrf_token }}
+						<div class="form-group">
+							<label for="name">Full Name</label>
+							{{ render_field(form.full_name, class="form-control", required="true", id="name") }}
+						</div>
+						{% if message == '' %}
+						<div class="form-group">
+							<label for="email">Email Address</label>
+							{{ render_field(form.email, class="form-control", required="true", id="email", type="email") }}
+						</div>
+						{% else %}
+						<div class="form-group">
+							<label for="email">Email Address </label>
+							{{ render_field(form.email, class="form-control border border-danger", required="true", id="email", type="email") }}
+							<small class="text-danger px-2"> {{ message }}</small>
+						</div>
+						{% endif %}
+						<div class="form-group">
+							<label for="phone">Contact Number</label>
+							{{ render_field(form.phone_number, class="form-control", required="true", id="phone") }}
+						</div>
+						<div class="form-group mb-4">
+							<label for="password">Password</label>
+							{{ render_field(form.password, class="form-control", required="true", id="password") }}
+							<div class="pt-2">
+								<input type="checkbox" id="showpass" onclick="showPass()"><small> Show Password</small>
+							</div>
+						</div>
+						<input type="submit" class="btn btn-block btn-success mb-5" value="Submit">
+			</form>	
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+<script type="text/javascript">
+	function showPass() {
+	  var x = document.getElementById("password");
+	  if (x.type === "password") {
+	    x.type = "text";
+	  } else {
+	    x.type = "password";
+	  }
+	}
+</script>
+
+{% endblock %}

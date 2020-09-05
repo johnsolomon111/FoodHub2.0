@@ -1,0 +1,102 @@
+{% macro sidebar() %}
+<div class="container pl-5 mt-5 text-left">
+	<div class="row m-4">
+		<div class="col">
+			<a class="btn btn-outline-secondary btn-lg border border-0" href="#"><img src={{ url_for('static', filename='img/restaurant.svg' )}} id='logo'> FoodHub</a>
+		</div>
+	</div>
+	<!-- <img class="border rounded mb-3" src={{ url_for('static', filename='img/resto_logo.webp') }} width="275" height="275"> -->
+	<div class="row m-4">
+		<div class="col">
+			<!-- <a href="{{ url_for('restaurant') }}" id="myrest" class="btn btn-outline-secondary btn-lg border border-0">My Restaurants</a> -->
+		</div>
+	</div>
+	<div class="row m-4">
+		<div class="col">
+			<a href="#" id="reser" class="btn btn-outline-secondary btn-lg border border-0">Reservations</a>			
+		</div>
+	</div>
+	<div class="row m-4">
+		<div class="col">
+			<a href="#" id="menu" class="btn btn-outline-secondary btn-lg border border-0">Menu</a>			
+		</div>
+	</div>
+	<div class="row m-4">
+		<div class="col">
+			<div class="dropdown dropright">
+			  <button class="btn btn-outline-secondary btn-lg border border-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <!-- {{ name }} -->
+			  </button>
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			    <a class="dropdown-item" href="#">Profile</a>
+			    <a class="dropdown-item" href="#">Logout</a>
+			  </div>
+			</div>		
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+  // var y = document.getElementById("{{ idname }}").className = 'btn btn-secondary btn-lg font-weight-bolder'
+</script>
+{% endmacro %}
+
+{% macro navbar_index() %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-2">
+	<div class="container">
+		<a class="navbar-brand" href="#">
+			<img src="../static/img/restaurant.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+			FoodHub
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link mx-3" href="#">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link mx-3" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+					<a class="nav-link mx-3" href="#">About us</a>
+				</li>
+				<li>
+          <a href="{{ url_for('main.sign_in')}}" class="btn btn-danger mx-3 rounded-pill" style="font-weight: 500;">Login</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<!-- Sign-Up Modal -->
+
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <h2 class="text-center mb-2" style="font-weight: 600;">Account Setup</h2>
+          <hr>
+          <p class="d-flex justify-content-center" style="font-size: 18px;">Are you a Restaurant Owner or Customer?</p>
+          <div class="card text-center border-0">
+            <div class="card-body p-0 mb-3">
+              <div class="d-flex justify-content-center">
+                <a href="{{ url_for('owner.owner_sign_up') }}" class="btn btn-outline-danger rounded-pill mr-1">Owner</a>
+                <a href="{{ url_for('customer.customer_sign_up')}}" class="btn btn-danger rounded-pill ml-1">Customer</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endmacro %}
